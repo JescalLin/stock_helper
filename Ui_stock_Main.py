@@ -357,7 +357,7 @@ class WorkThread(QThread):
                 if(num>up_num and red_green=="+" and close>=up_low_price and close<=up_high_price):
                     if d_value>up_gain:
                         equity = yf.Ticker(cleaned_data[i][0]+".TW")
-                        data = equity.history(period='1y')
+                        data = equity.history(start='2021-01-01',end=time_end)
                         #macd_data = self.macd(data, 12,26,9)
                         #macd_data = macd_data.iloc[::-1]
                         ma_5  = float("%.2f" % self.moving_average(data,5).iloc[-1:][0])
@@ -393,7 +393,7 @@ class WorkThread(QThread):
                 if(num>down_num and red_green=="-" and close>=up_low_price and close<=up_high_price):
                     if d_value<down_gain:
                         equity = yf.Ticker(cleaned_data[i][0]+".TW")
-                        data = equity.history(period='1y')
+                        data = equity.history(start='2021-01-01',end=time_end)
                         ma_5  = float("%.2f" % self.moving_average(data,5).iloc[-1:][0])
                         ma_10 = float("%.2f" % self.moving_average(data,10).iloc[-1:][0])
                         ma_20 = float("%.2f" % self.moving_average(data,20).iloc[-1:][0])
